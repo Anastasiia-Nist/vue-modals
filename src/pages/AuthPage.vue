@@ -9,6 +9,7 @@
             Логин
           </button>
           <modal-login
+            :openModal="openModalRegister"
             v-show="modalLogin"
             @close="modalLogin = false"
           ></modal-login>
@@ -19,6 +20,7 @@
             Регистрация
           </button>
           <modal-register
+            :openModal="openModalLogin"
             v-show="modalRegister"
             @close="modalRegister = false"
           ></modal-register>
@@ -43,6 +45,12 @@ export default {
     };
   },
   methods: {
+    openModalLogin() {
+      this.modalLogin = true;
+    },
+    openModalRegister() {
+      this.modalRegister = true;
+    },
     closeByEsc() {
       this.modalLogin = false;
       this.modalRegister = false;
@@ -51,12 +59,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
- .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .btn {
-        width: 60%;
-    }
- }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .btn {
+    width: 60%;
+  }
+}
 </style>

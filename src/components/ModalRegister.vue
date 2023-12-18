@@ -39,6 +39,12 @@
           </div>
         </div>
         <button class="btn btnPrimary">Регистрация</button>
+        <span class="auth-span"
+          ><p>Уже зарегистрированы?</p>
+          <button class="btn btnDefaul" @click.prevent="transition">
+            Войти
+          </button></span
+        >
       </form>
     </div>
   </modal-vue>
@@ -50,6 +56,12 @@ import modalVue from "@/components/UI/ModalVue.vue";
 export default {
   components: {
     modalVue,
+  },
+  props: {
+    openModal: {
+      type: Function,
+      requires: true,
+    },
   },
   data() {
     return {
@@ -72,6 +84,10 @@ export default {
     },
   },
   methods: {
+    transition() {
+      this.resetClose();
+      this.openModal();
+    },
     resetClose() {
       this.email = "";
       this.password = "";
@@ -108,5 +124,11 @@ export default {
 }
 .form-item-error input {
   border-color: #c72a2a;
+}
+.auth-span {
+  font-size: 12px;
+}
+.btn.btnDefaul {
+  font-size: 12px;
 }
 </style>

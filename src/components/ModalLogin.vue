@@ -10,13 +10,27 @@
           <div class="error" v-if="!$v.email.email">Некорректный email</div>
         </div>
         <!-- пароль -->
-        <div class="form-item" :class="{ 'form-item-error': $v.password.$error }">
+        <div
+          class="form-item"
+          :class="{ 'form-item-error': $v.password.$error }"
+        >
           <label>Пароль:</label>
           <input v-model.trim="password" @change="$v.password.$touch()" />
-          <div class="error" v-if="!$v.password.required">Обязательное поле</div>
-          <div class="error" v-if="!$v.password.minLength">Пароль должен быть длиннее {{ $v.password.$params.minLength.min - 1}}</div>
+          <div class="error" v-if="!$v.password.required">
+            Обязательное поле
+          </div>
+          <div class="error" v-if="!$v.password.minLength">
+            Пароль должен быть длиннее
+            {{ $v.password.$params.minLength.min - 1 }}
+          </div>
         </div>
         <button class="btn btnPrimary">Войти</button>
+        <span class="auth-span"
+          ><p>Ещё не зарегистрированы?</p>
+          <button class="btn btnDefaul" @click.prevent="transition">
+            Регистрация
+          </button></span
+        >
       </form>
     </div>
   </modal-vue>
@@ -29,6 +43,13 @@ export default {
   components: {
     modalVue,
   },
+  props: {
+    openModal: {
+      type: Function,
+      requires: true,
+    },
+  },
+
   data() {
     return {
       email: "",
@@ -46,6 +67,10 @@ export default {
     },
   },
   methods: {
+    transition() {
+      this.resetClose();
+      this.openModal();
+    },
     resetClose() {
       this.email = "";
       this.password = "";
@@ -81,5 +106,11 @@ export default {
 }
 .form-item-error input {
   border-color: #c72a2a;
+}
+.auth-span {
+  font-size: 12px;
+}
+.btn.btnDefaul {
+  font-size: 12px;
 }
 </style>
