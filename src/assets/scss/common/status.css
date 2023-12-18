@@ -1,0 +1,22 @@
+.status {
+  margin-right: 10px;
+}
+.status:before {
+  display: inline-block;
+  content: "\a";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.status.false {
+  color: #ff5722;
+}
+.status.false:before {
+  background: #ff5722;
+}
+.status.true {
+  color: #8bc34a;
+}
+.status.true:before {
+  background: #8bc34a;
+}/*# sourceMappingURL=status.css.map */
